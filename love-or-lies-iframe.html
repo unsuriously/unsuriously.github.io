@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=960, initial-scale=1.0">
+  <title>Love or Lies?</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Pinyon+Script&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+  margin: 0;
+  background-color: #7D1C4Afb;
+  font-family: 'EB Garamond';
+  color: #D17D98;
+}
+
+    #gameContainer {
+ width: 960px;
+  height: 540px;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #56021F;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 30px solid #56021F;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#landingPage {
+  width: 100%;
+  height: 100vh;
+  background-color: #56021F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#landingContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+#enterImage {
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  max-height: 75vh;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  margin-bottom: 0; 
+}
+
+#enterImage:hover {
+  transform: scale(1.05);
+}
+
+#openMeText {
+  font-family: 'Pixelify Sans', sans-serif;
+  color: #F4CCE9;
+  font-size: 22px;
+  margin-top: 10px; 
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; }
+  45%  { opacity: 0.6; }
+  60%  { opacity: 0.85; }
+  75%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+#loadingPage {
+  width: 100%;
+  height: 100vh;
+  background-color: #56021F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#loadingContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+#loadingImage {
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  max-height: 75vh;
+  border-radius: 20px;
+  margin-bottom: 0;
+}
+
+#loadingText {
+  font-family: 'Pixelify Sans', sans-serif;
+  color: #F4CCE9;
+  font-size: 36px;       
+  margin-top: 0;         
+  margin-bottom: 0;
+  height: 50px;         
+  overflow: hidden;     
+  white-space: nowrap;   
+  border-right: 3px solid #F4CCE9; 
+  box-sizing: border-box;
+    animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; }
+  45%  { opacity: 0.6; }
+  60%  { opacity: 0.85; }
+  75%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+    #openingPage {
+  width: 960px;
+  height: 540px;
+  padding: 40px;
+  box-sizing: border-box;
+  border: 30px solid #56021F;
+  background-image: url('https://i.pinimg.com/736x/ed/a8/d5/eda8d541aa0d989324a932179e5a2ab0.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ #openingTitle {
+      font-family: 'Argent Pixel CF';
+      font-style: italic;
+      font-size: 67px;
+      margin-bottom: 30px;
+      color: #7D1C4A;
+    }
+
+    #openingDesc {
+      font-family: 'EB Garamond';
+      font-size: 30px;
+      margin-bottom: 40px;
+      color: #56021F;
+    }
+
+    #openingContent {
+  transform: scaleX(-1); 
+}
+
+#overlayBox {
+  background-color: rgba(209, 125, 152, 0.626);
+  padding: 30px 50px;
+  border-radius: 15px;
+  max-width: 80%;
+  text-align: center;
+  transform: scaleX(-1); 
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border: 4px solid #ffffff; 
+}
+#gameOverlayBox {
+  background-color: rgba(209, 125, 152, 0.85);
+  padding: 30px 50px;
+  border-radius: 15px;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border: 4px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    #startButton {
+      padding: 20px 40px;
+      background-color: #56021F;
+      color: #F4CCE9;
+      border: none;
+      border-radius: 8px;
+      font-size: 26px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Pixelify Sans';
+    }
+
+    #startButton:hover {
+      background-color: #7D1C4A;
+    }
+
+    #storyText {
+      text-align: center;
+       font-family: 'EB Garamond';
+      font-size: 30px;
+      margin-bottom: 25px;
+      color: #F4CCE9;
+    }
+
+    .optionButton {
+  text-align: center;
+  padding: 18px 28px;
+  margin: 8px;
+  font-size: 20px;   
+  font-family: 'Pixelify Sans';            
+  background-color: #56021F;
+  color: #F4CCE9;
+  border: none;
+  border-radius: 12px;
+   transition: all 1s ease;
+    }
+
+    .optionButton:hover {
+      background-color: #7D1C4A;
+    }
+
+    #choices {
+    text-align: center;
+  margin: 8px;
+  font-size: 20px;   
+  font: 'Pixelify Sans';            
+  background-color: #56021F;
+  color: #F4CCE9;
+  border: none;
+  border-radius: 12px;
+    }
+
+    #questionArea {
+      display: block;
+  margin-top: 20px;
+  text-align: center;
+    }
+
+    #questionText {
+      margin-bottom: 10px;
+      color: #F4CCE9;
+      font-size: 25px;
+    }
+
+    .media {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    #endPage {
+  width: 960px;
+  height: 540px;
+  padding: 40px;
+  box-sizing: border-box;
+  border: 30px solid #56021F;
+  background-image: url('https://i.pinimg.com/736x/ed/a8/d5/eda8d541aa0d989324a932179e5a2ab0.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#endPage #overlayBox {
+  transform: scaleX(-1);
+  background-color: rgba(209, 125, 152, 0.85);
+  padding: 30px 50px;
+  border-radius: 20px;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border: 4px solid #ffffff;
+}
+
+#endTitle {
+  font-family: 'Argent Pixel CF';
+  font-style: italic;
+  font-size: 48px;
+  margin-bottom: 30px;
+  color: #7D1C4A;
+}
+
+#endDesc {
+  font-family: 'EB Garamond';
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #56021F;
+}
+
+#restartButton {
+  padding: 20px 40px;
+  background-color: #56021F;
+  color: #F4CCE9;
+  border: none;
+  border-radius: 8px;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Pixelify Sans';
+}
+
+#restartButton:hover {
+  background-color: #7D1C4A;
+}
+
+#feedbackPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#popupContent {
+  background-color: #F4CCE9;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border: 4px solid #56021F;
+  color: #56021F;
+  font-family: 'EB Garamond';
+  font-size: 22px;
+}
+
+#popupContent button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-family: 'Pixelify Sans';
+  font-size: 18px;
+  background-color: #56021F;
+  color: #F4CCE9;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#popupContent button:hover {
+  background-color: #7D1C4A;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div id="landingPage">
+  <div id="landingContent">
+    <img id="enterImage" src="letter.png" alt="Click to enter" />
+    <p id="openMeText">open me!</p>
+  </div>
+</div>
+
+<div id="loadingPage" style="display: none;">
+  <div id="loadingContent">
+    <img id="loadingImage" src="open letter.png" alt="loading..." />
+    <p id="loadingText">loading...</p>
+  </div>
+</div>
+
+
+ <div id="openingPage">
+  <div id="overlayBox">
+    <div id="openingTitle"><strong>LOVE OR LIES?</strong></div>
+    <div id="openingDesc">
+      A new beau... or unseen dangers?<br>
+      Having a new love interest is always fun, but can you spot the signs of a predator and keep yourself safe?
+    </div>
+    <button id="startButton" onclick="playClickSound(); startGame()">START!!</button>
+  </div>
+</div>
+
+
+  <div id="gameContainer">
+  <div id="gameOverlayBox">
+    <div id="storyText">Loading story...</div>
+    <div id="choices"></div>
+    <div id="questionArea">
+      <div id="questionText"></div>
+      <div id="quizChoices"></div>
+    </div>
+  </div>
+</div>
+
+  <div id="endPage" style="display: none;">
+  <div id="overlayBox">
+    <div id="endTitle">
+  YOU'VE COMPLETED<br><strong>LOVE OR LIES!</strong>
+</div>
+    <div id="endDesc">
+      Well done on navigating the story and learning how to spot red flags in online relationships.<br>
+      Stay safe and stay smart!
+    </div>
+    <button id="restartButton" onclick="playClickSound(); restartGame()">PLAY AGAIN</button>
+  </div>
+</div>
+
+<div id="feedbackPopup" style="display: none;">
+  <div id="popupContent">
+    <p id="popupMessage"></p>
+   <button onclick="playClickSound(); closePopup()">OK</button>
+  </div>
+</div>
+
+<audio id="clickSound" src="click-sound.mp3" preload="auto"></audio>
+
+<audio id="bgMusic" src="background-music.mp3" autoplay loop preload="auto"></audio>
+
+
+
+  <script>
+    const storyText = document.getElementById('storyText');
+    const choices = document.getElementById('choices');
+    const questionArea = document.getElementById('questionArea');
+    const questionText = document.getElementById('questionText');
+    const quizChoices = document.getElementById('quizChoices');
+    const openingPage = document.getElementById('openingPage');
+    const gameContainer = document.getElementById('gameContainer');
+
+    const storyNodes = {
+      1: {
+        text: "You've met someone named Jane on a dating app. Jane is charming and funny. They want to move the chat to a private messaging app. What do you do?",
+        background: "url('https://i.pinimg.com/1200x/47/c6/86/47c6869f13023d51f487f9d5f4ab804c.jpg')",
+        options: [
+          { text: "Agree and give them your number", next: 2 },
+          { text: "Say you'd prefer to stay in-app for now", next: 3 }
+        ]
+      },
+      2: {
+        text: "Jane begins sending flirty messages and asks you to send a cute picture. What do you do?",
+        options: [
+          { text: "Send a flirty picture", next: 4 },
+          { text: "Politely decline and ask to video chat instead", next: 5 }
+        ]
+      },
+      3: {
+        text: "Jane insists and says you're being uptight. Red flag or not?",
+        options: [
+          { text: "Agree to switch apps anyway", next: 2 },
+          { text: "Decide to stop chatting", next: 6 }
+        ]
+      },
+      4: {
+        text: "Jane screenshots your photo and threatens to share it unless you send more. This is image-based abuse.",
+        background: "url('https://www.imagebasedabuse.com/wp-site/wp-content/uploads/2022/03/Home-banner-1.jpg')",
+        options: [],
+        end: true,
+        impact: "Image-based abuse can have long-term emotional, social and legal consequences. Always be cautious about what you share."
+      },
+      5: {
+        text: "Jane refuses to video call and gets defensive. You sense something's off.",
+        background: "url('https://img.freepik.com/premium-photo/man-without-face-hood-holds-laptop-dark_164357-6565.jpg?w=360')",
+        options: [
+          { text: "End the conversation", next: 6 },
+          { text: "Give them another chance", next: 7 }
+        ]
+      },
+      6: {
+        text: "You ended the chat safely. Well done! Trust your instincts.",
+        options: [],
+        quiz: true
+      },
+      7: {
+        text: "Jane sends a suspicious link claiming it's a quiz about how compatible you are. What do you do?",
+       background: "url('https://img.freepik.com/free-vector/quiz-neon-sign_1262-19629.jpg?semt=ais_hybrid&w=740')",
+        options: [
+          { text: "Click it", next: 8 },
+          { text: "Refuse and report the account", next: 6 }
+        ]
+      },
+      8: {
+        text: "The link installs malware and your private info is stolen. You've been phished!",
+       background: "url('https://plus.unsplash.com/premium_photo-1714618835760-5b2175ad3249?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFsd2FyZXxlbnwwfHwwfHx8MA%3D%3D')",
+        options: [],
+        end: true,
+        impact: "Phishing can lead to identity theft, financial loss, and reputational damage. Never click on unverified links!"
+      }
+    };
+
+    const questions = [
+      {
+        text: "What is a safe way to verify someone’s identity online?",
+        options: [
+          "Send a private selfie",
+          "Request a live video call",
+          "Click their profile link",
+          "Share your address"
+        ],
+        answer: 1
+      },
+      {
+        text: "What should you do if someone pressures you to share personal photos?",
+        options: [
+          "Ignore your instincts and send it",
+          "Ask them to delete it",
+          "Refuse, and block or report them",
+          "Keep chatting but don’t send"
+        ],
+        answer: 2
+      }
+    ];
+
+    let currentNode = 1;
+    let currentQuestion = 0;
+
+document.getElementById('enterImage').onclick = () => {
+  playClickSound(); 
+  const music = document.getElementById('bgMusic');
+  if (music) {
+    music.play().catch((e) => {
+      console.warn("Autoplay blocked, will retry on next interaction.", e);
+    });
+  }
+
+  document.getElementById('landingPage').style.display = 'none';
+  document.getElementById('loadingPage').style.display = 'flex';
+
+  setTimeout(() => {
+    document.getElementById('loadingPage').style.display = 'none';
+    document.getElementById('openingPage').style.display = 'flex';
+  }, 5500);
+};
+
+
+
+    function startGame() {
+  const music = document.getElementById('bgMusic');
+  if (music) {
+    music.play().catch(() => {
+      console.log('Music autoplay blocked. Will play on user interaction.');
+    });
+  }
+
+  openingPage.style.display = 'none';
+  gameContainer.style.display = 'flex';
+
+  storyText.innerHTML = '';
+  storyText.style.opacity = '1';
+  storyText.style.transform = 'translateX(0)';
+  storyText.classList.remove('slide-out');
+
+  showNode(currentNode);
+}
+
+
+   function showNode(id) {
+  const node = storyNodes[id];
+  currentNode = id;
+
+  storyText.innerHTML = node.text;
+  choices.innerHTML = '';
+  questionArea.style.display = 'none';
+
+  if (node.end) {
+  const impact = document.createElement('p');
+  impact.innerHTML = `<strong>Real-life impact:</strong> ${node.impact}`;
+  storyText.appendChild(impact);
+
+  const restartBtn = document.createElement('button');
+  restartBtn.className = 'optionButton';
+  restartBtn.innerText = 'PLAY AGAIN';
+  restartBtn.onclick = () => {
+    playClickSound();
+    restartGame();
+  };
+
+  restartBtn.style.marginTop = '20px';
+  storyText.appendChild(restartBtn);
+}
+
+if (node.background) {
+  gameContainer.style.backgroundImage = node.background;
+}
+
+
+  if (node.quiz) {
+    showQuestion();
+    return;
+  }
+
+  node.options.forEach((opt, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'optionButton';
+    btn.innerText = opt.text;
+    btn.onclick = () => {
+  playClickSound();
+  showNode(opt.next);
+};
+
+    btn.style.opacity = '0';
+    btn.style.transform = 'translateY(20px)';
+    btn.style.transition = 'all 0.5s ease';
+
+    choices.appendChild(btn);
+
+
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+    }, 100 * index); 
+  });
+}
+
+   function showQuestion() {
+  questionArea.style.display = 'block';
+  const q = questions[currentQuestion];
+  questionText.innerText = q.text;
+  quizChoices.innerHTML = '';
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'optionButton';
+    btn.innerText = opt;
+    btn.onclick = () => {
+  playClickSound();
+  let message;
+  if (i === q.answer) {
+    message = 'Correct!';
+  } else {
+    message = 'Incorrect. The safe answer is to: ' + q.options[q.answer];
+  }
+
+  showPopup(message, () => {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      showQuestion();
+    } else {
+      gameContainer.style.display = 'none';
+      document.getElementById('endPage').style.display = 'flex';
+    }
+  });
+};
+
+    btn.style.opacity = '0';
+    btn.style.transform = 'translateY(20px)';
+    btn.style.transition = 'all 0.5s ease';
+
+    quizChoices.appendChild(btn);
+
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+    }, 100 * i); 
+  });
+}
+
+    function restartGame() {
+  currentNode = 1;
+  currentQuestion = 0;
+  document.getElementById('endPage').style.display = 'none';
+  openingPage.style.display = 'flex';
+}
+
+function showPopup(message, callback) {
+  document.getElementById('popupMessage').innerText = message;
+  document.getElementById('feedbackPopup').style.display = 'flex';
+  closePopup.callback = callback; 
+}
+
+function closePopup() {
+  document.getElementById('feedbackPopup').style.display = 'none';
+  if (typeof closePopup.callback === 'function') {
+    closePopup.callback(); 
+  }
+}
+
+function playClickSound() {
+  const clickAudio = document.getElementById('clickSound');
+  if (clickAudio) {
+    clickAudio.currentTime = 0; 
+    clickAudio.play();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playClickSound();
+    });
+  });
+});
+
+  </script>
+</body>
+</html>
