@@ -81,7 +81,7 @@
 #openMeText {
   font-family: 'Pixelify Sans', sans-serif;
   color: #F4CCE9;
-  font-size: 22px;
+  font-size: 36px;
   margin-top: 10px; 
   animation: flicker 1.5s infinite alternate;
 }
@@ -127,15 +127,13 @@
 #loadingText {
   font-family: 'Pixelify Sans', sans-serif;
   color: #F4CCE9;
-  font-size: 36px;       
-  margin-top: 0;         
+  font-size: 36px;
+  margin-top: 0;
   margin-bottom: 0;
-  height: 50px;         
-  overflow: hidden;     
-  white-space: nowrap;   
-  border-right: 3px solid #F4CCE9; 
+  height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
   box-sizing: border-box;
-    animation: flicker 1.5s infinite alternate;
 }
 
 @keyframes flicker {
@@ -143,6 +141,22 @@
   45%  { opacity: 0.6; }
   60%  { opacity: 0.85; }
   75%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+#cursor {
+  display: inline-block;
+  width: 2px; 
+  height: 1em;
+  background-color: #F4CCE9;
+  margin-left: 4px; 
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
   100% { opacity: 1; }
 }
 
@@ -388,7 +402,7 @@
 <div id="loadingPage" style="display: none;">
   <div id="loadingContent">
     <img id="loadingImage" src="open letter.png" alt="loading..." />
-    <p id="loadingText">loading...</p>
+    <p id="loadingText"><span id="typedText"></span><span id="cursor">|</span></p>
   </div>
 </div>
 
@@ -547,7 +561,8 @@ document.getElementById('enterImage').onclick = () => {
   }
 
   document.getElementById('landingPage').style.display = 'none';
-  document.getElementById('loadingPage').style.display = 'flex';
+document.getElementById('loadingPage').style.display = 'flex';
+typeLoadingText(); 
 
   setTimeout(() => {
     document.getElementById('loadingPage').style.display = 'none';
@@ -704,6 +719,22 @@ function playClickSound() {
     clickAudio.currentTime = 0; 
     clickAudio.play();
   }
+}
+
+function typeLoadingText() {
+  const text = "loading...";
+  const typedSpan = document.getElementById("typedText");
+  let index = 0;
+
+  function typeChar() {
+    if (index <= text.length) {
+      typedSpan.textContent = text.substring(0, index);
+      index++;
+      setTimeout(typeChar, 200); // Typing speed
+    }
+  }
+
+  typeChar();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
